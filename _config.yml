@@ -22,8 +22,8 @@ subtitle                 : "Statistics and Data Analysis"
 name                     : "Seop"
 description              : "Study"
 url                      : "https://hjs5979.github.io"
-baseurl                  : "https://hjs5979.github.io"
-repository               : "his5979/hjs5979.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
+baseurl                  : #"https://hjs5979.github.io"
+repository               : #"his5979/hjs5979.github.io" # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
 teaser                   : #"/assets/images/deco/greatcat.jpg"
 logo                     : "/assets/images/deco/greatcat.jpg"
 masthead_title           : "What's Seop"
@@ -106,7 +106,7 @@ author:
   avatar           : # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
   bio              : "I want to be a Specialist"
   location         : "Seoul"
-  email            : "hjs5979@gmail.com
+  email            : "hjs5979@gmail.com"
   links:
     - label: "Email"
       icon: "fas fa-fw fa-envelope-square"
@@ -255,16 +255,16 @@ tag_archive:
   type: liquid
   path: /tags/
 # https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
+jekyll-archives:
+  enabled:
+    - categories
+    - tags
+  layouts:
+    category: archive-taxonomy
+    tag: archive-taxonomy
+  permalinks:
+    category: /categories/:name/
+    tag: /tags/:name/
 
 
 # HTML Compression
