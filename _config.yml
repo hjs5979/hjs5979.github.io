@@ -24,9 +24,9 @@ description              : "Study"
 url                      : "https://hjs5979.github.io"
 baseurl                  : #"https://hjs5979.github.io"
 repository               : # GitHub username/repo-name e.g. "mmistakes/minimal-mistakes"
-teaser                   : "/assets/images/deco/greatcat.jpg"
+teaser                   : #"/assets/images/deco/greatcat.jpg"
 logo                     : "/assets/images/deco/greatcat.jpg"
-masthead_title           : # "abc"
+masthead_title           : #
 # breadcrumbs            : false # true, false (default)
 words_per_minute         : 200
 comments:
