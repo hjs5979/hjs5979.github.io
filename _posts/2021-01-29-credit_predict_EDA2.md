@@ -1,11 +1,11 @@
 ---
 layout: single
-title:  "신용등급 예측 대회 EDA2"
-categories: competition
+title:  신용등급 예측 대회 EDA2
+categories: 신용등급예측대회
 tag: [python, EDA]
-sidebar:
-  nav: "docs"
 toc: true
+sidebar:
+  nav: docs
 ---
 
 **변수간에 상관관계가 있는 지 확인해보겠습니다~~**

@@ -1,10 +1,8 @@
 ---
 layout: single
-title:  "신용등급 예측 대회 EDA3"
-categories: competition
+title:  신용등급 예측 대회 EDA3
+categories: 신용등급예측대회
 tag: [python, EDA]
-sidebar:
-  nav: "docs"
 toc: true
 ---
 

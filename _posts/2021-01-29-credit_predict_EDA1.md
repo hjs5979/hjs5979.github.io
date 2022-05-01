@@ -1,11 +1,12 @@
 ---
 layout: single
-title:  "신용등급 예측 대회 EDA1"
-categories: competition
+title:  신용등급 예측 대회 EDA1
+categories: 신용등급예측대회
 tag: [python, EDA]
-sidebar:
-  nav: "docs"
 toc: true
+author_profile: true
+sidebar:
+  nav: docs
 ---
 
 # 데이콘 신용카드 사용자 연체 예측
