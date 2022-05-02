@@ -10,18 +10,7 @@ sidebar:
 ---
 
 
-```python
-import pandas as pd
-import numpy as np
-import optuna
-from sklearn.model_selection import train_test_split
-from catboost import CatBoostClassifier
-from sklearn.metrics import accuracy_score
-from sklearn.model_selection import KFold, StratifiedKFold
 
-train=pd.read_csv('./train.csv')
-test=pd.read_csv('./test.csv')
-```
 
 저번에 이어서 전처리와 학습을 해보겠습니다!!
 
@@ -35,6 +24,20 @@ test=pd.read_csv('./test.csv')
 
 - 범주형 변수를 더 낮은 수준의 범주로 변환할지 고민 -> 변환 x
 
+사용한 라이브러리
+
+```python
+import pandas as pd
+import numpy as np
+import optuna
+from sklearn.model_selection import train_test_split
+from catboost import CatBoostClassifier
+from sklearn.metrics import accuracy_score
+from sklearn.model_selection import KFold, StratifiedKFold
+
+train=pd.read_csv('./train.csv')
+test=pd.read_csv('./test.csv')
+```
 
 # 전처리
 
