@@ -9,7 +9,7 @@ sidebar:
   nav: docs
 ---
 
-![png](/assets/images/income_predict/title.png)
+![png](/assets/images/income_predict/title.PNG)
 
 <https://dacon.io/competitions/official/235892/overview/description>
 
