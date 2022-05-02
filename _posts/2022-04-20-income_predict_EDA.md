@@ -10,6 +10,7 @@ sidebar:
 ---
 
 ![png](/assets/images/income_predict/title.png)
+
 <https://dacon.io/competitions/official/235892/overview/description>
 
 오랜만에 데이콘 대회에 참여해서 결과를 정리해봅니다!<br>

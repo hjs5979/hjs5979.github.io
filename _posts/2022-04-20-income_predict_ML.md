@@ -8,10 +8,6 @@ author_profile: true
 sidebar:
   nav: docs
 ---
-
-
-
-
 저번에 이어서 전처리와 학습을 해보겠습니다!!
 
 # 전처리 방안
