@@ -2,20 +2,26 @@
 layout: single
 title:  신용등급 예측 대회 EDA1
 categories: 신용등급예측대회
-tag: [python, EDA]
+tag: [python, EDA, ML]
 toc: true
 author_profile: true
 sidebar:
   nav: docs
 ---
 
-# 데이콘 신용카드 사용자 연체 예측
+![png](/assets/images/credit_predict/title.png)
 
-데이콘에서 진행하는 대회에 참여해봤습니다!
+<https://dacon.io/competitions/official/235713/overview/description>
 
-대회 목표는 여러 고객 데이터 변수들을 이용하여 credit(신용점수) 변수를 예측하는 것!!!
+# 신용카드 사용자 연체 예측
 
-변수는 다음과 같습니다! 타겟변수를 포함해서 19개네용
+옛날에 참여했던 대회인데 이제 정리하고 올리게 됐네요 ㅎㅎ...
+
+분류 모델을 만드는 대회인데, 처음 참여해서 어리바리 엄청했던 기억이 ㅋㅋㅋㅋ 
+
+어쨋든 목표는 여러 고객 데이터 변수들을 이용하여 credit(신용점수) 변수를 예측하는 것입니다
+
+주어진 변수는 다음과 같습니다! 타겟변수를 포함해서 19개입니다
 
 - gender: 성별
 - car: 차량 소유 여부
@@ -38,14 +44,16 @@ sidebar:
 - begin_month: 신용카드 발급 월, 데이터 수집 당시 (0)부터 역으로 셈 <br/> 즉, -1은 데이터 수집일 한 달 전에 신용카드를 발급함을 의미
 - credit: 사용자의 신용카드 대금 연체를 기준으로 한 신용도<br/>  **=>낮을 수록 높은 신용의 신용카드 사용자를 의미함**
 
+날짜계산이 신기하네요 ㅋㅋㅋ
 
-**이제 EDA 시작합니다!**
+**이제 EDA 시작하겠습니다!**
 
 
 # 기본 EDA
 
 ```python
 import pandas as pd
+import numpy as np
 import matplotlib.pyplot as plt
 import seaborn as sns
 ```
@@ -88,14 +96,11 @@ train.info()
     memory usage: 4.0+ MB
     
 
+눈에 확 띄는 occyp_type의 결측치... 벌써 머리가 아파온다
 
 ```python
 train.describe(include='all')
 ```
-
-
-
-
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -394,6 +399,8 @@ train.describe(include='all')
 </table>
 </div>
 
+FLAG_MOBIL의 값이 이상하다
+
 ```python
 train.plot(kind='box',subplots=True,layout = (7,4),figsize=(20,30))
 plt.tight_layout()
@@ -402,10 +409,13 @@ plt.show()
 
 ![png](/assets/images/credit_predict/output_8_0.png)
     
+FLAG_MOBIL의 항목이 1밖에 없는것 같네요</br>
+DAYS_EMPLOYED의 이상치가 눈에 띄네요
 
 ```python
 # sns.pairplot(train) 생략
 ```
+그림이 너무 커서 생략... 실제에서는 한번해보면 큰 그림을 볼 수 있습니다 ㅋㅋㅋ
 
 ```python
 train.duplicated(subset=['income_total', 'DAYS_BIRTH'], keep=False).value_counts()
@@ -415,7 +425,7 @@ train.duplicated(subset=['income_total', 'DAYS_BIRTH'], keep=False).value_counts
     False     3090
     dtype: int64
 
-<br/>
+대회에서 화두가 되었던 중복데이터입니다... 23367개가 중복상태에 있다는 건데, 한 고객이 신용카드를 여러개 사용하는 경우가 많아서 이런 중복데이터가 생긴 것 같습니다
 
 ## 기본 EDA 결과정리
 
@@ -429,37 +439,4 @@ train.duplicated(subset=['income_total', 'DAYS_BIRTH'], keep=False).value_counts
 4. FLAG_MOBIL은 범주가 1 하나 밖에 없음
 5. DAYS_EMPLOYED에 이상치 존재(양수)
 
-
-## 변수분석 전처리
-
-<br/>
-
-```python
-# 인덱스 미리 제거
-train.drop(['index'], axis=1, inplace=True)
-```
-
-
-```python
-# 변수분석에 방해가 되는 DAYS_EMPLOYED의 양수값을 0으로 변경
-train[train['DAYS_EMPLOYED'] >= 0] = 0
-```
-
-
-```python
-# 숫자형 변수와 범주형 변수 미리 분리
-cate_feat = []
-num_feat = []
-for col in train.columns:
-    target = train[col]
-    if target.nunique() <=20:
-        cate_feat.append(col)
-    else:
-        num_feat.append(col)
-print('범주형 :', cate_feat)
-print('연속형: ', num_feat)
-```
-
-    범주형 : ['gender', 'car', 'reality', 'child_num', 'income_type', 'edu_type', 'family_type', 'house_type', 'FLAG_MOBIL', 'work_phone', 'phone', 'email', 'occyp_type', 'family_size', 'credit']
-    연속형:  ['income_total', 'DAYS_BIRTH', 'DAYS_EMPLOYED', 'begin_month']
     

@@ -2,16 +2,22 @@
 layout: single
 title:  신용등급 예측 대회 EDA3
 categories: 신용등급예측대회
-tag: [python, EDA]
+tag: [python, EDA, ML]
 toc: true
+author_profile: true
+sidebar:
+  nav: docs
 ---
 
-**각 변수별로 credit이 어떻게 분포되어 있는지 countplot과 histplot으로 확인해봤습니당~**
+다음 포스트에 이어서 이번엔 각 변수에 어떤 값이 많고 값들중에서 credit이 어떻게 분포되어 있는지 countplot과 histplot으로 확인해봤습니다. 이렇게 하면 그래도 각 변수에 대해서 이해도가 조금 높아지는 것 같습니다 ㅋㅋㅋ
 
-### 범주형 변수
+앞 포스트에서 말했지만 credit이 낮을수록 신용등급이 높은 거랍니다!! 저도 헷갈리네요 ㅋㅋㅋ
 
-#### gender
+# 범주형 변수
 
+---
+
+## gender
 
 ```python
 var = cate_feat[0]
@@ -38,11 +44,13 @@ plt.show()
     
 ![png](/assets/images/credit_predict/output_27_1.png)
     
-- F,M에 따라 credit 분포, 평균의 차이가 크지 않음
+- F,M에 따라 credit 분포, 평균의 차이가 크지 않음</br>
 
-**변수만 바꿔서 코드를 사용했기 때문에 코드는 생략하겠습니당^^**
+왼쪽그림은 항목마다 타겟인 0,1,2가 어떻게 분포되있는지 알수 있고, 오른쪽그림은 항목마다의 타겟 평균을 시각화 한 것입니다 음 ... 여기에서는 항목마다 큰 차이가 없는 것으로 생각할 수 있겠죠??? 
 
-#### car
+**변수만 바꿔서 코드를 사용했기 때문에 똑같은 코드는 생략하겠습니당^^**
+
+## car
 
     N    16410
     Y    10047
@@ -50,11 +58,12 @@ plt.show()
     
 ![png](/assets/images/credit_predict/output_30_1.png)
     
-- 자동차 소유 여부에 따라 credit 분포, 평균의 차이가 미세하게 남
-- 일반적으로는 자동차를 소유한 것이 신용이 더 좋아야한다고 생각되는데, 차량 소유자가 상대적으로 적어서 그렇거나 자동차 유지비등이 신용에 영향을 미쳤다고 생각.
+- 자동차 소유 여부에 따라 credit 분포, 평균의 차이가 미세하게 남</br>
+
+일반적으로는 자동차를 소유한 것이 신용이 더 좋아야할 것 같은데, 이 데이터에서는 그렇지가 않네요... 제가 생각하기에는 아마 차량 소유자가 상대적으로 적어서 그렇거나 자동차 유지비, 자동차 리스 비용, 자동차 할부금등에 영향을 받은 것 같습니다!
 
 
-#### reality
+## reality
 
 
     Y    17830
@@ -65,11 +74,10 @@ plt.show()
 ![png](/assets/images/credit_predict/output_33_1.png)
     
 
-
 - 부동산 소유 여부에 따라 credit 분포, 평균의 차이가 미세하게 남
-- 당연하게도 부동산을 가진 사람이 미세하게 더 낮은 credit값을 가짐
+- 당연하게도 부동산을 가진 사람이 미세하게 더 낮은 credit값을 가짐(하지만 생각보다 차이가 크지 않은...이것도 대출 때매???)
 
-#### child_num
+## child_num
 
 
     0     18340
@@ -88,9 +96,11 @@ plt.show()
     
 - 아이의 수가 7, 14, 19일 때, 큰 등급이 나오는 것을 확인할 수 있으나, 이상치이며, 해당 범주에 속한 데이터가 매우 적기 때문에 유의미하게 사용할 수는 없을 것 같음.
 - 나머지 0,1,2,3,4 일 때는 비슷하나 5일때는 낮은 credit이 나온 것을 확인할 수 있었음.
-- 이미 신용이 좋지 않기 때문에 아이를 안낳는 경우, 신용이 좋아 아이를 더 낳는 경우가 있다고 생각
+</br>
 
-#### income_type
+이미 신용이 좋지 않기 때문에 아이를 안낳는 경우, 신용이 좋아 아이를 더 낳는 경우가 있다고 생각했습니다(역발상 ㅋ)
+
+## income_type
 
     Working                 13645
     Commercial associate     6202
@@ -102,9 +112,12 @@ plt.show()
 ![png](/assets/images/credit_predict/output_39_1.png)
     
 - 소득 타입에 따라 credit 분포, 평균의 차이가 크지 않음
+
 - Student에 속한 데이터가 적기 때문에 퍼지는 양상을 보임
 
-#### edu_type
+(student는 지워도 될지도??)
+
+## edu_type
 
     Secondary / secondary special    17995
     Higher education                  7162
@@ -120,7 +133,7 @@ plt.show()
 - Academic degree에 속한 데이터가 적기 때문에 퍼지는 양상을 보임
 - Higher, Academic degree가 교육수준이 높기 때문에 미세하기 더 낮은 credit을 보였다고 생각
 
-#### family_type
+## family_type
 
 
 
@@ -136,9 +149,11 @@ plt.show()
     
 
 - 결혼 상황에 따라 credit 분포가, 평균이 미세하게 다름
-- Civil marrige(법률혼)관계에 있을 경우 낮은 credit 수치가 눈에 띔.
+- Civil marrige 관계에 있을 경우 낮은 credit 수치가 눈에 띔.
 
-#### house_type
+Civil marrige은 법률적으로 혼인한 관계이고, Married는 동거같은 비법률적인 혼인관계라고 하네요
+
+## house_type
 
 
     House / apartment      23653
@@ -152,50 +167,64 @@ plt.show()
 
 ![png](/assets/images/credit_predict/output_48_1.png)
     
-
-
 - 주거타입에 따라 다양한 분포와 평균을 보임
 - Rented apartment일 경우 credit이 더 낮음 -> 데이터가 적어 나온 것으로 예상
+</br>
 
-#### FLAG_MOBIL
+대부분 데이터가 한쪽으로 몰려있기 때문에 항목마다 유의미한 차이가 나오지는 않네요
 
+## FLAG_MOBIL
+
+    1    26457
+    
+    Name: FLAG_MOBIL, dtype: int64
+    
+
+![png](/assets/images/credit_predict/output_51_1.png)
+    
+- 0값이 없음 -> 의미없는 변수임으로 제거</br>
+
+요즘 휴대폰없는 사람 찾기 힘들죠...
+
+## work_phone
 
     0    20511
     1     5946
     Name: work_phone, dtype: int64
     
 
-![png](/assets/images/credit_predict/output_51_1.png)
-    
-- 0값이 없음 -> 의미없는 변수임으로 제거
-
-#### work_phone
-
-
-    0    18672
-    1     7785
-    Name: phone, dtype: int64
-    
-
 ![png](/assets/images/credit_predict/output_54_1.png)
     
 - 직장용 휴대폰을 소지한 사람이 미세하게 낮은 credit을 가짐
 
-#### phone
+## phone
+
+    0    18672
+    1     7785
+    Name: phone, dtype: int64
+  
+![png](/assets/images/credit_predict/output_57_1.png)
+    
+phone은 집전화에 대한 데이터라고 하네요
+
+- phone이 없는 사람이 더 낮은 credit을 가짐
+- 최근 모두 휴대폰을 소지하면서 집전화를 사용하지 않는 집이 많고, 가족구성원이 모두 휴대폰을 가지지 않았을 경우에 집전화가 있다고 가정하면 이해가 됨
+
+## email
 
 
     0    24042
     1     2415
     Name: email, dtype: int64
     
-  
-![png](/assets/images/credit_predict/output_57_1.png)
-    
+![png](/assets/images/credit_predict/output_60_1.png)
 
-- phone이 없는 사람이 더 낮은 credit을 가짐
-- 최근 모두 휴대폰을 소지하면서 phone을 사용하지 않는 집이 많고, 가족구성원이 모두 휴대폰을 가지지 않았을 경우에 phone이 있다고 가정하면 이해가 됨
+- email이 없는 사람이 낮은 credit을 가짐
+- 데이터가 많아서 그런 것으로 생각할 수 있음
 
-#### email
+신용등급이 높으면 email이 필요가 없나... 이건 좀 데이터가 이상한 것 같네요
+
+## occyp_type
 
     Laborers                 4512
     Core staff               2646
@@ -216,14 +245,12 @@ plt.show()
     HR staff                   62
     IT staff                   41
     Name: occyp_type, dtype: int64
-    
-    
-![png](/assets/images/credit_predict/output_60_1.png)
 
-- email이 없는 사람이 낮은 credit을 가짐
-- 데이터가 많아서 그런 것으로 생각할 수 있음
+![png](/assets/images/credit_predict/output_63_1.png)
+    
+- 직업에 따라 다양한 credit 분포를 보임
 
-#### occyp_type
+## family_size
 
     2     14106
     1      5109
@@ -236,40 +263,31 @@ plt.show()
     9         2
     20        1
     Name: family_size, dtype: int64
-    
-
-![png](/assets/images/credit_predict/output_63_1.png)
-    
-- 직업에 따라 다양한 credit 분포를 보임
-
-#### family_size
-
-
-    2    16968
-    1     6267
-    0     3222
-    Name: credit, dtype: int64
-    
 
 ![png](/assets/images/credit_predict/output_66_1.png)
     
 
 - 가족 수에 따라 credit이 매우 큰 차이를 보임
+- 가족수가 7이상이면 데이터가 매우 적어져 판단이 어려워짐
+- child_num과 비슷한 이유가 있을 것이라 생각함 
 
-#### credit
+## credit
 
-
-    0    24042
-    1     2415
-    Name: email, dtype: int64
-    
+    2    16968
+    1     6267
+    0     3222
+    Name: credit, dtype: int64
 
 ![png](/assets/images/credit_predict/output_69_1.png)
 
 
-- 타겟 변수가 매우 불균형함. => 샘플링 고려 
+- 타겟 변수가 매우 불균형함. => 샘플링 고려</br>
 
-### 연속형 변수
+하지만 샘플링을 해서 성능이 향상된 경우는 거의 없었다는 슬픈 이야기 ㅋㅋ
+
+# 연속형 변수
+
+---
 
 **범주형으로 처리했을 때, 어떤 양상을 보이는지 확인하기 위해 전처리하였습니당**
 
@@ -280,9 +298,10 @@ for i in num_feat:
     bins = np.linspace(df[i].min(), df[i].max(), 10)
     df[i] = np.digitize(df[i], bins)
 ```
+일단은 10개로 구분해봤습니다!
 
-#### income_total
 
+## income_total
 
 ```python
 var = num_feat[0]
@@ -293,7 +312,7 @@ sns.histplot(x=train[var],bins=10,hue=train['credit'])
 ```
 
 ![png](/assets/images/credit_predict/output_74_1.png)
-    
+
 
 ```python
 print(df[var].value_counts())
@@ -330,10 +349,11 @@ plt.show()
 
 
 - 수입이 1인 구간에서 0이 더 많이 나옴 
-- 수입이 높은데 credit이 높게 나옴 
-=> 잘못된 데이터?
+- 수입이 높은데 credit이 높게 나옴</br>
 
-#### DATS_BIRTH
+이것도 잘못된 데이터인감...
+
+#### DAYS_BIRTH
 
 ![png](/assets/images/credit_predict/output_78_1.png)
     
@@ -358,12 +378,9 @@ plt.show()
 - 데이터가 적은 구간을 제외하면 credit이 비슷한 분포를 보임 
 
 #### DAYS_EMPLOYED
-
  
 ![png](/assets/images/credit_predict/output_82_0.png)
     
-
-
     9     9966
     8     6477
     10    4438
@@ -376,20 +393,14 @@ plt.show()
     1       51
     Name: DAYS_EMPLOYED, dtype: int64
     
-
-
-    
 ![png](/assets/images/credit_predict/output_83_1.png)
     
-
-
-- 데이터가 적은 구간을 제외하면 credit이 비슷한 분포를 보임
+- 일을 오래했을수록 신용등급이 좋아보임
 
 #### begin_month
 
 
 ![png](/assets/images/credit_predict/output_86_0.png)
-
 
     8     4161
     7     3760
@@ -409,6 +420,22 @@ plt.show()
 
 - 데이터가 적은 구간을 제외하면 credit이 비슷한 분포를 보임
 - 9구간에서 1이 더 많이 나옴
+
+```python
+train.duplicated(subset=['gender','income_total', 'income_type',
+                         'family_type','DAYS_BIRTH',
+                         'email','family_size', 'begin_month'], keep=False).value_counts()
+
+```
+
+    False    21956
+    True      4501
+    dtype: int64
+
+'gender','income_total', 'income_type','family_type','DAYS_BIRTH', 'email','family_size', 'begin_month'를 함께 봤을 때
+중복값이 가장 적게 나타남. 
+
+=> 이 변수들을 섞어 파생변수 생성
 
 ## 변수분석 결과
 

@@ -6,8 +6,13 @@ main:
     url: /tags/
 
 docs:
+  - title: Statistic
+  
   - title: competition
     children:
       - title: "신용등급 예측 대회"
-        url: /categories/#신용등급 예측 대회
+        url: /categories/#신용등급예측대회
+
+      - title: "인구데이터 기반 소득 예측 대회"
+        url: /categories/#소득예측대회
        
