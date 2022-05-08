@@ -7,7 +7,9 @@ main:
 
 docs:
   - title: Statistic
-  
+    children:
+      - title: "통계학"
+        url: /categories/#통계학
   - title: competition
     children:
       - title: "신용등급 예측 대회"
