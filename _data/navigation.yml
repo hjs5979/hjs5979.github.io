@@ -8,13 +8,16 @@ main:
 docs:
   - title: Statistic
     children:
-      - title: "통계학"
-        url: /categories/#통계학
-  - title: competition
+      - title: "확률"
+        url: /categories/#확률
+        category: "확률"
+  - title: 신용등급예측대회
     children:
       - title: "신용등급 예측 대회"
         url: /categories/#신용등급예측대회
+        category: '신용등급예측대회'
 
       - title: "인구데이터 기반 소득 예측 대회"
         url: /categories/#소득예측대회
+        category: "소득예측대회"
        
