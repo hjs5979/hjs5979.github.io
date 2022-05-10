@@ -11,7 +11,7 @@ docs:
       - title: "확률"
         url: /categories/#확률
         category: "확률"
-  - title: 신용등급예측대회
+  - title: Competition
     children:
       - title: "신용등급 예측 대회"
         url: /categories/#신용등급예측대회
