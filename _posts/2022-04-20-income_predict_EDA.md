@@ -16,8 +16,11 @@ sidebar:
 오랜만에 데이콘 대회에 참여해서 결과를 정리해봅니다!<br>
 인구데이터를 통해 0,1로 구분된 타겟을 구분하면 되는 대회입니다.<br> 
 타켓은 소득을 기준으로 구분되어 있네요
+이전에 진행했던 신용카드대회와 코드와 내용은 비슷합니다.
 
-변수부터 알아볼까요~
+</br>
+
+변수부터 알아보겠습니다.
 
 ## 변수
 
@@ -40,27 +43,13 @@ sidebar:
  - 0 = <=50K (5만 달러 이하)
  - 1 = >50K (5만 달러 초과) 
 
-변수가 많은 편은 아니네요.
-fnlwgt가 뭔지 몰라서 찾아봤는데 찾아봐도 모르겠는...ㅋㅋ
-
-```python
-import numpy as np
-import pandas as pd
-```
-
-```python
-train=pd.read_csv('./train.csv')
-test=pd.read_csv('./test.csv')
-```
+fnlwgt은 미국 인구 조사에서 부여한 final weight라고 한다. 어떤 방식으로 계산되는 지는 명시되어 있지 않았습니다.
 
 # EDA
 ---
 
 ## 기본 EDA
 
-
-```python
-train.info()
 ```
 
     <class 'pandas.core.frame.DataFrame'>
@@ -87,11 +76,9 @@ train.info()
     dtypes: int64(8), object(8)
     memory usage: 2.1+ MB
     
-workclass와 occupation에 결측치가 존재하네요.
-둘다 직업관련이라 직업이 없는 사람이 결측치로 나타났는지 확인을 해봐야할 것 같아요
+workclass와 occupation에 결측치가 존재합니다.
+둘다 직업관련이라 직업이 없는 사람이 결측치로 나타났는지 확인을 해봐야할 것 같습니다.
 
-```python
-train.describe(include='all')
 ```
 <div>
 <style scoped>
@@ -343,8 +330,11 @@ train.describe(include='all')
 </table>
 </div>
 
-hours.per.week에 일주일에 99시간 일하는 사람이 있네요
-가능한건가??? ㅋㅋㅋ
+hours.per.week에 일주일에 99시간 일하는 사람이 있는데 이상치로 구분하고 제거해야할 것 같습니다.
+
+</br>
+
+# 상관분석
 
 다음은 상관관계 분석을 위해 변수를 구분했습니다
 
@@ -364,51 +354,22 @@ print('연속형: ', num_feat)
     범주형 : ['workclass', 'education', 'education.num', 'marital.status', 'occupation', 'relationship', 'race', 'sex', 'target']
     연속형:  ['id', 'age', 'fnlwgt', 'capital.gain', 'capital.loss', 'hours.per.week', 'native.country']
 
-범주형 분석 후에 숫자형 분석을 진행했습니다!!!
-
-```python
-# 범주형 상관관계
-from scipy.stats import chi2_contingency, chisquare
-
-corr_list= []
-
-for i in cate_feat:
-    c_list = []
-    for j in cate_feat:
-        ct = pd.crosstab(train[i],train[j])
-        result=chi2_contingency(observed=ct)
-        c = np.sqrt(result[0]/(len(train)*(min(len(train[i].unique()),len(train[j].unique()))-1)))
-        c_list.append(c)
-    corr_list.append(c_list)
-corr_df = pd.DataFrame(corr_list,columns=cate_feat, index=cate_feat)
-
-sns.set(rc = {'figure.figsize':(20,12)})
-sns.heatmap(corr_df,vmin=-1,vmax=1,cmap='RdBu',linewidths=.1,annot=True, fmt='.2f')
-```
+범주형 분석 후에 숫자형 분석을 진행했습니다.
 
 ![png](/assets/images/income_predict/output_9_1.png)
 
-education과 education.num의 상관관계 1?!
-education과 education.num은 확인해본 결과 같은 변수더라고요 항목 이름만 다른 거였습니다 ㅋㅋㅋ<br>
-sex, relationship도 상관관계가 있는데, husband, wife 같은 항목 때문에 그런 것 같습니다!
+education과 education.num의 상관관계 1이 나왔습니다.
+education과 education.num은 확인해본 결과 같은 변수였습니다. 항목 이름만 바꾼 같은 변수이기 때문에, 둘중에 한 변수는 제거해 줄 예정입니다.
 
+<br>
 
-```python
-#숫자형 상관관계
-numeric_feat = []
-for col in train.columns:
-    if train[col].dtype == 'int64' or 'float64':
-        numeric_feat.append(col)
-        
-num_corr = train[numeric_feat].corr(method='pearson') #spearman
+sex, relationship도 상관관계가 있는데, husband, wife 같은 항목 때문에 그런 것 같다는 생각을 했습니다.
 
-sns.set(rc = {'figure.figsize':(20,12)})
-sns.heatmap(num_corr,vmin=-1,vmax=1,cmap='RdBu',linewidths=.1,annot=True, fmt='.2f')
-```
+다음은 숫자형 변수 상관관계를 구해봤습니다.
     
 ![png](/assets/images/income_predict/output_10_1.png)
 
-숫자형에서 눈에 띄는 상관관계는 없네요
+숫자형에서 눈에 띄는 상관관계는 없었습니다.
 
 ```python
 import matplotlib.pyplot as plt 
@@ -418,7 +379,7 @@ plt.show()
 ```
 ![png](/assets/images/income_predict/output_11_0.png)
     
-이상치가 상당히 많이 나오네요
+이상치가 상당히 많이 나왔습니다.
 특히 capital.gain에 튀어나온 저 값은 없애야 겠네요.
 
 ## 기본 EDA 결과
