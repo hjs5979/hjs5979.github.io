@@ -2,7 +2,7 @@
 layout: single
 title:  순열과 조합
 categories: 확률
-tag: [Statistic]
+tag: [Statistic, Probability]
 use_math: true
 toc: true
 author_profile: true
