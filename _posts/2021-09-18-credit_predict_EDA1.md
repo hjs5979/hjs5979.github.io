@@ -15,13 +15,13 @@ sidebar:
 
 # 신용카드 사용자 연체 예측
 
-옛날에 참여했던 대회인데 이제 정리하고 올리게 됐네요 ㅎㅎ...
+옛날에 참여했던 대회인데 이제 정리하고 올리게 됐습니다.
 
-분류 모델을 만드는 대회인데, 처음 참여해서 어리바리 엄청했던 기억이 ㅋㅋㅋㅋ 
+분류 모델을 만드는 대회인데, 처음 참여해서 어리바리 엄청했던 기억이 있네요.
 
-어쨋든 목표는 여러 고객 데이터 변수들을 이용하여 credit(신용점수) 변수를 예측하는 것입니다
+어쨋든 목표는 여러 고객 데이터 변수들을 이용하여 credit(신용점수) 변수를 예측하는 것입니다.
 
-주어진 변수는 다음과 같습니다! 타겟변수를 포함해서 19개입니다
+주어진 변수는 다음과 같습니다. 타겟변수를 포함해서 19개입니다.
 
 - gender: 성별
 - car: 차량 소유 여부
@@ -44,28 +44,14 @@ sidebar:
 - begin_month: 신용카드 발급 월, 데이터 수집 당시 (0)부터 역으로 셈 <br/> 즉, -1은 데이터 수집일 한 달 전에 신용카드를 발급함을 의미
 - credit: 사용자의 신용카드 대금 연체를 기준으로 한 신용도<br/>  **=>낮을 수록 높은 신용의 신용카드 사용자를 의미함**
 
-날짜계산이 신기하네요 ㅋㅋㅋ
+날짜계산이 조금 복잡하네요.
 
 **이제 EDA 시작하겠습니다!**
 
 
 # 기본 EDA
 
-```python
-import pandas as pd
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
-```
-
-```python
-train=pd.read_csv('./train.csv')
-test=pd.read_csv('./test.csv')
-```
-
-```python
-train.info()
-```
+간단히 변수에 대해서 살펴보겠습니다.
 
     <class 'pandas.core.frame.DataFrame'>
     RangeIndex: 26457 entries, 0 to 26456
@@ -96,11 +82,10 @@ train.info()
     memory usage: 4.0+ MB
     
 
-눈에 확 띄는 occyp_type의 결측치... 벌써 머리가 아파온다
+26457개의 데이터가 있고, occyp_type에 약 8000개의 결측치가 있는 것을 확인할 수 있습니다. 숫자형 데이터가 12개, 오브젝트형이 8개입니다.
 
-```python
-train.describe(include='all')
-```
+
+변수의 통계량에 대해서 살펴보겠습니다.
 <div>
 <style scoped>
     .dataframe tbody tr th:only-of-type {
@@ -399,23 +384,16 @@ train.describe(include='all')
 </table>
 </div>
 
-FLAG_MOBIL의 값이 이상하다
+FLAG_MOBIL의 통계량이 표준편차를 제외하고 1로 나오는 것을 보아, 값이 하나밖에 없다는 것을 알 수 있습니다.이러한 변수는 분석에 의미가 없으므로 나중에 지워주는게 좋을 것 같습니다.
 
-```python
-train.plot(kind='box',subplots=True,layout = (7,4),figsize=(20,30))
-plt.tight_layout()
-plt.show()
-```
+다음은 boxplot으로 데이터 분포를 확인하겠습니다.
 
 ![png](/assets/images/credit_predict/output_8_0.png)
     
-FLAG_MOBIL의 항목이 1밖에 없는것 같네요</br>
-DAYS_EMPLOYED의 이상치가 눈에 띄네요
-
-```python
-# sns.pairplot(train) 생략
-```
-그림이 너무 커서 생략... 실제에서는 한번해보면 큰 그림을 볼 수 있습니다 ㅋㅋㅋ
+역시 FLAG_MOBIL는 값이 1밖에 없습니다. 그 외에는
+child_num, family_size, DAYS_EMPLOYED, income_total의 이상치가 눈에 띕니다.  DAYS_EMPLOYED는 논리적으로 불가능한 값(365243)이기 때문에 제거해줘야할 것 같습니다.
+Child_num과 family_size의 이상치는 논리적으로 가능한 값이지만 변수를 자세히 살펴보고 처리방법을 생각해야할 것 같습니다.
+income_total는 소득이라는 특성상 이상치가 발생할 수 밖에 없을 것 같습니다. 변수를 자세히 살펴보고 처리방법을 생각해보는 것이 좋을 것 같습니다.
 
 ```python
 train.duplicated(subset=['income_total', 'DAYS_BIRTH'], keep=False).value_counts()
@@ -425,18 +403,18 @@ train.duplicated(subset=['income_total', 'DAYS_BIRTH'], keep=False).value_counts
     False     3090
     dtype: int64
 
-대회에서 화두가 되었던 중복데이터입니다... 23367개가 중복상태에 있다는 건데, 한 고객이 신용카드를 여러개 사용하는 경우가 많아서 이런 중복데이터가 생긴 것 같습니다
+대회에서 화두가 되었던 중복데이터입니다. income_total과 DAYS_BIRTH를 집합으로 삼아서 중복을 확인해본 결과, 23367개가 중복상태에 있다는 것을 확인할 수 있습니다. 한 고객(income과 생일 동일)이 신용카드를 여러 개 사용하는 경우가 있아서 이런 중복데이터가 생긴 것 같습니다.
 
 ## 기본 EDA 결과정리
 
 <br/>
 
-1. child_num, days_employed, family_size, income_total에서 이상치 발견
+1. child_num, DAYS_EMPLOYED, family_size, income_total에서 이상치 발견
 <br/>
-=> income_total은 변수 특성에 따라 이상치 처리를 할 필요성이 적고 나머지는 이상치 처리가 필요해 보임.
-2. child_num과 family_size는 상관관계가 있음.
-3. 23367개의 행이 중복관계에 있음.
-4. FLAG_MOBIL은 범주가 1 하나 밖에 없음
-5. DAYS_EMPLOYED에 이상치 존재(양수)
+=> DAYS_EMPLOYED의 이상치 제거, 나머지는 변수체크
 
+2. 23367개의 행이 중복관계에 있음.
+3. FLAG_MOBIL은 값이 1 하나 밖에 없음 -> 제거
+
+오늘은 이만 포스팅을 마치겠습니다.
     
