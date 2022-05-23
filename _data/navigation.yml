@@ -15,6 +15,10 @@ docs:
       - title: "상관관계"
         url: /categories/#상관관계
         category: "상관관계"
+      
+      - title: "검정"
+        url: /categories/#검정
+        category: "검정"
         
   - title: Competition
     children:
