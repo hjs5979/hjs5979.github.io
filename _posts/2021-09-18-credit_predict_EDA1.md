@@ -386,10 +386,15 @@ FLAG_MOBIL의 통계량이 표준편차를 제외하고 1로 나오는 것을 �
 
 ![png](/assets/images/credit_predict/output_8_0.png)
     
-역시 FLAG_MOBIL는 값이 1밖에 없습니다. 그 외에는
-child_num, family_size, DAYS_EMPLOYED, income_total의 이상치가 눈에 띕니다.  DAYS_EMPLOYED는 논리적으로 불가능한 값(365243)이기 때문에 제거해줘야할 것 같습니다.
-Child_num과 family_size의 이상치는 논리적으로 가능한 값이지만 변수를 자세히 살펴보고 처리방법을 생각해야할 것 같습니다.
-income_total는 소득이라는 특성상 이상치가 발생할 수 밖에 없을 것 같습니다. 변수를 자세히 살펴보고 처리방법을 생각해보는 것이 좋을 것 같습니다.
+- 역시 FLAG_MOBIL는 값이 1밖에 없습니다. 
+
+- 그 외에는 child_num, family_size, DAYS_EMPLOYED, income_total의 이상치가 눈에 띕니다.  
+
+- DAYS_EMPLOYED는 논리적으로 불가능한 값(365243)이기 때문에 제거해줘야할 것 같습니다.
+
+- Child_num과 family_size의 이상치는 논리적으로 가능한 값이지만 변수를 자세히 살펴보고 처리방법을 생각해야할 것 같습니다.
+
+- income_total는 소득이라는 특성상 이상치가 발생할 수 밖에 없을 것 같습니다. 변수를 자세히 살펴보고 처리방법을 생각해보는 것이 좋을 것 같습니다.
 
 ```python
 train.duplicated(subset=['income_total', 'DAYS_BIRTH'], keep=False).value_counts()
