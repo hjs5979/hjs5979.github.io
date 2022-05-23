@@ -15,15 +15,18 @@ sidebar:
 전처리는 catboost를 쓴다는 가정하에 진행하였습니다.
 catboost는 범주형 변수에 유리하기 때문에 변수들을 모두 범주화하였습니다.
 
-catboost에 대해 더 알고싶으시면 이분들 글을 참고하시면 될듯! 잘 설명해주셨네요
+catboost에 대해 더 알고싶으시면 일단 이분들 글을 참고하시면 될 것 같습니다.
+저도 논문 내용을 포스팅할 예정입니다.
 
 <https://dailyheumsi.tistory.com/136>
 
 <https://blog.naver.com/PostView.nhn?blogId=winddori2002&logNo=221931868686&categoryNo=17&parentCategoryNo=0&viewDate=&currentPage=1&postListTopCurrentPage=1&from=postView>
 
+범주형 변수가 많을 때, 유리한 catboost를 사용하였습니다. 때문에 최대한 변수들을 범주형으로 바꿔주려 노력하였습니다. 또한 catboost는 변수를 원-핫 인코딩 해주기 때문에 따로 인코딩을 하지는 않았습니다. 
+
 1. 연속형 변수
 
-- 모든 변수를 10개 구간으로 나누어 범주화
+- 모든 변수를 10개 구간으로 나누어 범주화합니다.
 
 2. 범주형 변수
 
@@ -54,9 +57,6 @@ from sklearn.preprocessing import train_test_split
 import optuna
 from catboost import CatBoostClassifier
 from sklearn.model_selection import StratifiedKFold 
-
-train=pd.read_csv('./train.csv')
-test=pd.read_csv('./test.csv')
 ```
 
 # 전처리
@@ -134,7 +134,7 @@ def preprocessing(df):
 preprocessing(test)
 preprocessing(train)
 ```
-전처리 끝~
+전처리는 끝났습니다.
 
 ## 학습 및 테스트
 
@@ -145,7 +145,7 @@ target_df = train['credit']
 X_train, X_test, y_train, y_test = train_test_split(train_df, target_df, test_size = 0.3, stratify=target_df, random_state=0)
 ```
 
-catboost는 범주형데이터를 지정해주면 범주형데이터를 알아서 처리해줍니다. 짱편하죠
+catboost는 범주형데이터를 지정해주면 범주형데이터를 알아서 인코딩해줍니다.
 
 ```python
 cat_features = []
@@ -172,11 +172,12 @@ cat_features.append("derived_var")
 
 ```
 
-obtuna를 통해서 하이퍼 파라미터를 튜닝하였습니다. 각 파라미터의 범위는 이분의 공유코드를 참고했습니다!
+obtuna를 통해서 하이퍼 파라미터를 튜닝하였습니다. 각 파라미터의 범위는 이분의 공유코드를 참고했습니다.
 <https://dacon.io/competitions/official/235713/codeshare/2757?page=2&dtype=recent>
 
 obtuna를 사용하기 위해서 파라미터 범위를 지정해주고 학습하는 함수를 만들어줍니다. 이 대회는 평가기준이 log loss이기 때문에 log loss를 사용해줍니다.
 
+하이퍼 파라미터에 대한 내용은 후에 포스팅할 예정입니다.
 ```python
 def objective(trial):
     param = {
@@ -205,9 +206,7 @@ def objective(trial):
 
     return log_score
 ```
-optuna.create_study를 통해 튜닝을 시작합니다.
-상당히 오래 걸리니 GPU나 코랩을 사용하시길...
-저는 10번 돌렸습니다
+optuna.create_study를 통해 튜닝을 시작합니다. 코랩의 GPU를 통해 10번 돌렸습니다. 
 
 ```python
 study = optuna.create_study(
@@ -220,7 +219,7 @@ print("Best trial",study.best_trial.params)
 ```
 
 더 정확한 평가를 위해 계층적 k-fold 교차검증을 실시했습니다.
-계층적 k-fold 교차검증은 이분이 잘 설명해주셨습니다.
+계층적 k-fold 교차검증은 이 블로그에 잘 설명되어 있습니다.
 <https://huidea.tistory.com/30>
 
 ```python
@@ -254,6 +253,4 @@ def stratified_kfold_cat(params, n_fold, train_df, target_df, test_df):
 oof, preds = stratified_kfold_cat(study.best_trial.params, 5, train_df, target_df, test)
 ```
 
-이 후 제출 과정을 생략하였습니다!
-
-결과는 참혹 ... 0.80133... EDA를 더 자세히할 필요를 느꼈습니다...
+이 후 제출 과정은 생략하였습니다.

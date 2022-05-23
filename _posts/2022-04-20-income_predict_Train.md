@@ -12,13 +12,24 @@ sidebar:
 
 # 전처리 방안
 
+- 범주형 변수가 많을 때, 유리한 catboost를 사용하였습니다. 때문에 최대한 변수들을 범주형으로 바꿔주려 노력하였습니다. 또한 catboost는 변수를 원-핫 인코딩 해주기 때문에 따로 인코딩을 하지는 않았습니다. 
+
 - age는 범주형 변수로 변환
 
-- fnlwgt는 로그변환하고 나머지 연속형 변수는 그대로 사용하기로함 -> 나머지도 모두 변환해서 넣어봤지만 성능이 하락...
+- fnlwgt는 로그변환하고 나머지 연속형 변수는 그대로 사용하기로함 
+
+-> 나머지도 모두 변환해서 넣어봤지만 성능이 하락하였습니다.
 
 - education.num, relationship, native.country 제거
 
-- 범주형 변수를 더 낮은 수준의 범주로 변환할지 고민 -> 변환 x
+- 범주형 변수를 더 낮은 수준의 범주로 변환할지 고민 
+
+-> 변환하였더니 성능이 하락하였습니다.
+
+- 변수 조합
+
+-> education, marital.status, occupation, race, sex 을 섞어 사용하였지만 성능이 향상되지는 않았습니다.
+
 
 사용한 라이브러리
 
@@ -37,7 +48,7 @@ test=pd.read_csv('./test.csv')
 
 # 전처리
 
-전처리를 함수화하였습니다!
+전처리를 함수화하여 진행하였습니다.
 
 ```python
 def preprocessing(df):
@@ -84,14 +95,14 @@ def preprocessing(df):
 preprocessing(train)
 preprocessing(test)
 ```
-학습데이터와 타겟을 분리합니다~
+학습데이터와 타겟을 분리합니다.
 
 ```python
 train_df = train.drop(['target'], axis=1)
 target_df = train['target']
 ```
 
-catboost를 위해 리스트에 범주형 변수들을 넣어줍니다!
+catboost를 위해 리스트에 범주형 변수들을 넣어줍니다.
 
 ```python
 cat_features = []
@@ -143,8 +154,7 @@ print(accuracy_score(pred, y_test))
     900:	learn: 0.2189459	total: 49.9s	remaining: 5.48s
     999:	learn: 0.2146759	total: 55.6s	remaining: 0us
     0.8794100636205899
-    
-0.879가 나왔을 때는 매우 기분이 좋았지...
+
 
 필요없는 변수가 있나해서 변수중요도도 한번 살펴봤습니다
 
@@ -174,7 +184,7 @@ feature_importances
      'hours.per.week': 9.291321571751823}
 
 
-저번에 했던 신용등급대회 포스팅에서 사용했던 파라미터 범위와 비슷하게 설정했습니다. 정확히 어떤 파라미터였는지 까먹어서 다시 공부중... 
+저번에 했던 신용등급대회 포스팅에서 사용했던 파라미터 범위와 비슷하게 설정했습니다.
 
 
 ```python
@@ -204,7 +214,7 @@ def objective(trial):
     return accuracy
 ```
 
-파라미터 튜닝 시작!! 통크게 100번!
+파라미터 튜닝
 
 ```python
 study = optuna.create_study(direction="maximize")
@@ -243,7 +253,7 @@ for key, value in trial.params.items():
         od_type: IncToDec
     
 
-계층적 k-fold로 검증 시작!
+계층적 k-fold로 검증을 진행합니다.
 
 ```python
 cat_models={}
@@ -278,8 +288,7 @@ mean_outcome=np.mean(outcomes)
 print("Mean:{}".format(mean_outcome))
 ```
 
-제출은 생략합니다~
+제출은 생략했습니다.
 
-최종 0.870로 38등했네요 ㅠ 넘 아쉽다!! 다음엔 꼭 10등안에 들어보겠습니다 ㅎㅎ
-
+최종 0.870로 38등.
 
