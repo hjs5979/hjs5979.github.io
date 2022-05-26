@@ -29,4 +29,10 @@ docs:
       - title: "인구데이터 기반 소득 예측 대회"
         url: /categories/#소득예측대회
         category: "소득예측대회"
+  
+  - title: Article
+    children:
+      - title: "추천시스템"
+        url: /categories/#추천시스템
+        category: '추천시스템'
        
