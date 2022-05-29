@@ -169,7 +169,7 @@ VIEW `maketicket` AS
         ((`raw_data`.`taskID` = 'MakeTicket')
             AND (`raw_data`.`eventtype` = 'complete'))
 ```
-![png](/assets/images/sql_project/process.PNG)
+![png](/assets/images/sql_project/maketicket.PNG)
 
 maketicket이라는 task에 있던 특성들을 뽑아주었습니다. repairtype 에 따라 프로세스 지속시간이나 수리방법이 바뀔 수 있기 때문에 이에 대한 분석이 필요할 것 같아 이러한 방법으로 추출을 해주었습니다. eventype이 complete일 때 특성이 표시되기 때문에 조건을 넣어줬습니다.
 
@@ -219,7 +219,7 @@ VIEW `repair` AS
 
 추가적으로 프로세스를 도식화한 그림입니다.
 
-![png](/assets/images/sql_project/duration.PNG)
+![png](/assets/images/sql_project/process.PNG)
 
 # task_number
 
