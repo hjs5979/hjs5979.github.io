@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  부동산 데이터 프로젝트
+title:  부동산 데이터 분석 프로젝트
 categories: 프로젝트
 tag: [python, EDA]
 toc: true
@@ -10,6 +10,7 @@ sidebar:
 ---
 
 데이터분석 부트캠프에서 캐글의 부동산 가격 예측 대회 데이터를 통해서 데이터 분석 프로젝트를 진행해봤습니다.
+
 https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
 
 
@@ -524,10 +525,13 @@ plt.show()
 df.duplicated(keep=False).value_counts()
 ```
 
-![png](./asset/realestate_project/output_10_0.png)
+![png](/assets/images/realestate_project/output_10_0.png)
     
 
-먼저 PoolQC, MiscFeature, Alley의 결측값이 눈에 띕니다. 결측값이 전체 데이터의 90% 이상을 차지하기 때문에 이 피쳐는 삭제해주었습니다. 이상치가 상당히 많지만 모두 논리적으로 가능한 값입니다. 이후에 모델링 과정에서 문제가 될 경우 제거해주겠습니다. 또한 중복값이 없었습니다.
+먼저 PoolQC, MiscFeature, Alley의 결측값이 눈에 띕니다. 
+결측값이 전체 데이터의 90% 이상을 차지하기 때문에 이 피쳐는 삭제해주었습니다. 
+이상치가 상당히 많지만 모두 논리적으로 가능한 값입니다. 
+이후에 모델링 과정에서 문제가 될 경우 제거해주겠습니다. 또한 중복값은 없었습니다.
 
 ```python
 df.drop(['Id', 'Alley', 'PoolQC', 'MiscFeature'], axis=1,inplace=True)
@@ -552,18 +556,24 @@ print('연속형: ', num_feat)
     
 
 범주형 변수에 대해서 크라머 V 상관검정을 시행하였습니다.
-    
-![png](./asset/realestate_project/output_13_1.png)
+변수가 많다보니 보기가 힘든 부분 이해부탁드립니다.
+
+![png](/assets/images/realestate_project/output_13_1.png)
 
     
 모든 변수에 대해서 앤더슨 달링 검정을 해봤을 때, 정규성을 만족시키지 못하였기 때문에 스피어만 검정을 진행하겠습니다.
 이를 위해 숫자형 변수 리스트를 만들어주고 검정을 시행하였습니다.
 
     
-![png](./asset/realestate_project/output_14_1.png)
+![png](/assets/images/realestate_project/output_14_1.png)
     
 
-상관검정에서 발견한 것은 OverallQual이 다른 변수들과의 상관관계가 상대적으로 높다는 것을 알 수 있었습니다. 범주형에서 2개, 연속형에서 12가 0.4 이상의 상관관계를 보였습니다. 이 변수들에 대해서 추가적으로 회귀분석을 통해 인과관계에 대해서도 분석해보도록 하겠습니다. 
+상관검정에서 발견한 것은 OverallQual이 다른 변수들과의 상관관계가 상대적으로 높다는 것을 알 수 있었습니다. 
+범주형에서 2개, 연속형에서 12개가 0.4 이상의 상관관계를 보였습니다. 
+
+저는 이 상관분석 결과를 통해 OverallQual를 통해 부동산에 대한 평가점수를 예측하는 모델을 만들어 볼 생각입니다. 2021년 부동산 가격이 2020년에 비해 큰 폭으로 상승하면서 부동산에 대한 관심이 높아졌고, 이에 따라 많은 수요가 발생했습니다. 2021년 4분기 들어 이러한 추세는 주춤했지만 어느정도는 지속될 것으로 생각됩니다. 이러한 지속적인 수요가 있을 것으로 예상되는 부동산 시장에서 이러한 예측모델은 시장에서 부동산을 구매/판매 시에 이용될 수 있고, 부동산 평가를 위한 지표를 제공할 수 있습니다.
+
+OverallQual에 대한 가설을 더 검증하기 위해 이 변수들에 대해서 추가적으로 회귀분석을 통해 인과관계에 대해서도 분석해보도록 하겠습니다. 
 
 
 스피어만 검정 결과에서 상관계수의 절대값이 0.4 이상인 것만 모은 후 리스트화 해주도록 하겠습니다.
@@ -649,10 +659,16 @@ Notes:
 [2] The condition number is large, 2.59e+07. This might indicate that there are
 strong multicollinearity or other numerical problems.
 ```
-f값을 통해 모형 자체는 유의함을 알 수 있다. 하지만 TotRmsAbvGrd, GarageArea, OpenPorchSF의 t값이 유의하지 않습니다. cond.no 값으로 다중공선성도 존재함을 알 수 있기 때문에 단계적 선택법을 통해 변수를 줄여 모델의 적합성을 올리도록 하겠습니다. 선택의 기준은 AIC로 설정하였습니다. R-squared값은 나쁘지 않습니다.
+f값을 통해 모형 자체는 유의함을 알 수 있습니다. 
+하지만 TotRmsAbvGrd, GarageArea, OpenPorchSF의 t값이 유의하지 않습니다. 
+cond.no 값으로 다중공선성도 존재함을 알 수 있기 때문에 단계적 선택법을 통해 변수를 줄여 모델의 적합성을 올리도록 하겠습니다. 
+선택의 기준은 AIC로 설정하였습니다. R-squared값은 나쁘지 않습니다.
 
 변수선택법에 대해서 따로 파이썬에서 라이브러리를 제공해주지 않기 때문에 아래의 블로그를 참조하여 함수를 만들어주었습니다.
+
 https://todayisbetterthanyesterday.tistory.com/10
+
+
 ```
   OLS Regression Results                            
 ==============================================================================
@@ -685,14 +701,11 @@ Notes:
 strong multicollinearity or other numerical problems.
 ```
 
-모델도 유의하고 변수들도 모두 유의하지만 여전히 다중공선성이 존재한다고 나옵니다. R-squared 값이 약간 감소했지만 나쁘지 않은 값입니다. 이전에 상관분석에서 상관관계가 높게 나왔던 범주형 변수를 추가해보겠습니다.
+결과를 분석해보면, YearBuilt, GrLivArea, SalePrice 가 선택되었습니다.
+모델도 유의하고 변수들도 모두 유의하지만 여전히 다중공선성이 존재한다고 나옵니다. 
+R-squared 값이 약간 감소했지만 나쁘지 않은 값입니다. 
+이제 범주형 변수도 포함해서 변수 선택을 진행해보도록 하겠습니다. 
 
-```python
-from statsmodels.stats.anova import anova_lm
-model = sm.OLS.from_formula('OverallQual ~ YearBuilt + FullBath + GarageCars + SalePrice + KitchenQual + ExterQual', df)
-result = model.fit()
-print(result.summary())
-```
 
                                 OLS Regression Results                            
     ==============================================================================
@@ -732,7 +745,9 @@ print(result.summary())
     strong multicollinearity or other numerical problems.
     
 
-모델과 변수 모두 유의하고 AIC값이 감소하였습니다. R_squared 값은 증가하였습니다. 여전히 다중공선성이 있다고 나옵니다. 다중공선성을 판단하는 지표인 VIF를 통해 다중공선성을 평가해보겠습니다.
+
+모델과 변수 모두 유의하고 AIC값이 감소하였습니다. R_squared 값은 증가하였습니다. 
+여전히 다중공선성이 있다고 나옵니다. 다중공선성을 판단하는 지표인 VIF를 통해 다중공선성을 평가해보겠습니다.
 
 ```python
 from statsmodels.stats.outliers_influence import variance_inflation_factor
