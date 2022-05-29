@@ -1,7 +1,7 @@
 ---
 layout: single
 title:  부동산 데이터 프로젝트
-categories: 데이터분석
+categories: 프로젝트
 tag: [python, EDA]
 toc: true
 author_profile: true
