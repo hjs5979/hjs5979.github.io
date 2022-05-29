@@ -19,8 +19,9 @@ sidebar:
 ```python
 stats.anderson(x = train['credit'], dist = 'norm')
 ```
-    AndersonResult(statistic=3950.0460986285034, critical_values=array([0.576, 0.656, 0.787, 0.918, 1.092]), significance_level=array([15. , 10. ,  5. ,  2.5,  1. ]))
-    
+```
+AndersonResult(statistic=3950.0460986285034, critical_values=array([0.576, 0.656, 0.787, 0.918, 1.092]), significance_level=array([15. , 10. ,  5. ,  2.5,  1. ]))
+```
 통계량이 3950이 나와서 정규성을 만족하지 못합니다.
 
 # 범주형 변수
@@ -134,8 +135,6 @@ print(k)
 
 - 나머지 0,1,2,3,4 일 때는 비슷하나 5일때는 낮은 credit이 나온 것을 확인할 수 있었음.
 
-</br>
-
 이미 신용이 좋지 않기 때문에 아이를 안낳는 경우, 신용이 좋아 아이를 더 낳는 경우가 있다고 생각했습니다. 아이의 수가 7, 14, 19일 때, 신용점수가 낮은 것을 확인할 수 있습니다. 논리적으로는 아이가 많으면 신용점수가 낮아질 확률이 높을 것 같습니다.  하지만 데이터상 해당 데이터가 이상치이고, 범주에 속한 데이터가 매우 적기 때문에 유의미하게 사용할 수는 없을 것 같다는 생각을 하였습니다.
 
 ## income_type
@@ -211,7 +210,7 @@ Civil marrige은 법률적으로 혼인한 관계이고, Married는 동거같은
     
 - 주거타입에 따라 다양한 분포와 평균을 보임
 - Rented apartment일 경우 credit이 더 낮음 -> 데이터가 적어 나온 것으로 예상
-</br>
+
 
 대부분 데이터가 한쪽으로 몰려있기 때문에 다른 항목의 데이터 수가 작아져서 항목마다 유의미한 차이가 나오지 않습니다.
 
@@ -224,7 +223,7 @@ Civil marrige은 법률적으로 혼인한 관계이고, Married는 동거같은
 
 ![png](/assets/images/credit_predict/output_51_1.png)
     
-- 0값이 없음 -> 의미없는 변수임으로 제거</br>
+- 0값이 없음 -> 의미없는 변수임으로 제거
 
 ## work_phone
 
@@ -331,7 +330,7 @@ child_num과 비슷하게 생각하였습니다. child_num과 family_size는 상
 ![png](/assets/images/credit_predict/output_69_1.png)
 
 
-- 타겟 변수가 매우 불균형함. => 샘플링 고려</br>
+- 타겟 변수가 매우 불균형함. => 샘플링 고려
 
 smote 오버 샘플링을 해서 학습을 해봤지만 성능이 좋아지지는 않았습니다.
 
@@ -395,11 +394,22 @@ plt.show()
 
     
 ![png](/assets/images/credit_predict/output_75_1.png)
-    
 
+```python
+from statsmodels.miscmodels.ordinal_model import OrderedModel
+
+mod_log = OrderedModel(df['credit'],
+                        df['income_total'],
+                        distr='logit')
+
+res_log = mod_log.fit(method='bfgs', disp=False)
+res_log.summary()
+```
+
+순서형 로지스틱 회귀모형을 통해 credit과 income_total의 관계를 검정해보려 하였으나, AIC와 BIC의 통계값이 너무 커 모델의 적합성의 의심되기 때문에 이는 시각적 방법으로 대체한다.
 
 - 수입이 1인 구간에서 0이 더 많이 나옴 
-- 수입이 높은데 credit이 높게 나옴</br>
+- 수입이 높은데 credit이 높게 나옴
 
 
 #### DAYS_BIRTH

@@ -113,7 +113,7 @@ def preprocessing(df):
     le.fit(df['occyp_type'])
     df['occyp_type'] = le.transform(df['occyp_type'])
     
-    #파생변수 : 언더바로 이어줬어요
+    #파생변수 : 언더바로 이어줬습니다.
     df['derived_var'] = train['gender'] + '_' + train['income_total'].astype(str) + '_' + train['income_type'] +\
     '_' + train['family_type'] + '_' + train['DAYS_BIRTH'].astype(str) + '_' + train['email'].astype(str) +\
     '_' + train['family_size'].astype(str) + '_' + train['begin_month'].astype(str)
