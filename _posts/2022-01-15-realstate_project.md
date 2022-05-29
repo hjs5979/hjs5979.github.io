@@ -1,3 +1,4 @@
+---
 layout: single
 title:  부동산 데이터 프로젝트
 categories: 데이터분석
@@ -6,6 +7,7 @@ toc: true
 author_profile: true
 sidebar:
   nav: docs
+---
 
 데이터분석 부트캠프에서 캐글의 부동산 가격 예측 대회 데이터를 통해서 데이터 분석 프로젝트를 진행해봤습니다.
 https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
