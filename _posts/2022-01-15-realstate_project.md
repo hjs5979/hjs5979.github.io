@@ -11,6 +11,8 @@ sidebar:
 
 데이터분석 부트캠프에서 캐글의 부동산 가격 예측 대회 데이터를 통해서 데이터 분석 프로젝트를 진행해봤습니다.
 
+![png](/assets/images/realestate_project/kagel.PNG)
+
 https://www.kaggle.com/competitions/house-prices-advanced-regression-techniques/data
 
 
