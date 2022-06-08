@@ -19,6 +19,14 @@ docs:
       - title: "검정"
         url: /categories/#검정
         category: "검정"
+      
+      - title: "회귀"
+        url: /categories/#회귀
+        category: "회귀"
+
+      - title: "분포"
+        url: /categories/#분포
+        category: "분포"
 
   - title: Project
     children:
