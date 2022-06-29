@@ -2,7 +2,7 @@
 layout: single
 title:  분포의 기본
 categories: 분포
-tag: [Statistic, Test]
+tag: [Statistic, distribution]
 use_math: true
 toc: true
 author_profile: true
