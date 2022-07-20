@@ -48,5 +48,10 @@ docs:
     children:
       - title: "추천시스템"
         url: /categories/#추천시스템
-        category: '추천시스템'
-       
+        category: 'Article'
+
+  - title: CS
+    children:
+      - title: "알고리즘"
+        url: /categories/#CS
+        category: 'CS'
