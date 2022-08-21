@@ -1,6 +1,6 @@
 ---
 layout: single
-title:  신용등급 예측 대회 EDA1
+title:  신용등급 예측 대회 EDA
 categories: 신용등급예측대회
 tag: [python, EDA, ML]
 toc: true
