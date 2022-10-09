@@ -70,3 +70,7 @@ $F_{m,n}(a) = \frac{1}{F_{n,m}(1-a)}$가 성립된다는 것입니다. 이를 �
 ![png](/assets/images/statistic/405px-Student_f_pdf.png)
 
 (출처 : https://www.jmp.com/ko_kr/statistics-knowledge-portal/f-test/chi-square-distribution.html )
+
+# Reference
+
+이시이 도시아키. 『통계학 대백과사전』. 안동현(역). 동양북스, 2022.
