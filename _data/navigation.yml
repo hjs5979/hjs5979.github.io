@@ -27,6 +27,14 @@ docs:
       - title: "분포"
         url: /categories/#분포
         category: "분포"
+      
+      - title: "통계상식"
+        url: /categories/#통계상식
+        category: "통계상식"
+
+      - title: "분산분석"
+        url: /categories/#분산분석
+        category: "분산분석"
 
   - title: Project
     children:
@@ -52,6 +60,6 @@ docs:
 
   - title: CS
     children:
-      - title: "알고리즘"
+      - title: "CS"
         url: /categories/#CS
         category: 'CS'
