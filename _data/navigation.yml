@@ -58,7 +58,7 @@ docs:
         url: /categories/#추천시스템
         category: 'Article'
 
-  - title: CS
+  - title: cs
     children:
       - title: "CS"
         url: /categories/#cs
