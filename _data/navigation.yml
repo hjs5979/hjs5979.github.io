@@ -61,5 +61,5 @@ docs:
   - title: CS
     children:
       - title: "CS"
-        url: /categories/#CS
+        url: /categories/#cs
         category: 'CS'
