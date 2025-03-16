@@ -11,15 +11,15 @@ docs:
       - title: "확률"
         url: /categories/#확률
         category: "확률"
-      
+
       - title: "상관관계"
         url: /categories/#상관관계
         category: "상관관계"
-      
+
       - title: "검정"
         url: /categories/#검정
         category: "검정"
-      
+
       - title: "회귀"
         url: /categories/#회귀
         category: "회귀"
@@ -27,7 +27,7 @@ docs:
       - title: "분포"
         url: /categories/#분포
         category: "분포"
-      
+
       - title: "통계상식"
         url: /categories/#통계상식
         category: "통계상식"
@@ -40,26 +40,26 @@ docs:
     children:
       - title: "프로젝트"
         url: /categories/#프로젝트
-        category: '프로젝트'
+        category: "프로젝트"
 
   - title: Competition
     children:
       - title: "신용등급 예측 대회"
         url: /categories/#신용등급예측대회
-        category: '신용등급예측대회'
+        category: "신용등급예측대회"
 
       - title: "인구데이터 기반 소득 예측 대회"
         url: /categories/#소득예측대회
         category: "소득예측대회"
-  
+
   - title: Article
     children:
       - title: "추천시스템"
         url: /categories/#추천시스템
-        category: 'Article'
+        category: "Article"
 
   - title: cs
     children:
-      - title: "CS"
-        url: /categories/#cs
-        category: 'CS'
+      - title: "알고리즘"
+        url: /categories/#algorithm
+        category: "algorithm"
