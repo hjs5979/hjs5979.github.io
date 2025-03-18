@@ -61,5 +61,9 @@ docs:
   - title: cs
     children:
       - title: "알고리즘"
-        url: /categories/#algorithm
-        category: "algorithm"
+        url: /categories/#알고리즘
+        category: "알고리즘"
+
+      - title: "DB"
+        url: /categories/#DB
+        category: "DB"
