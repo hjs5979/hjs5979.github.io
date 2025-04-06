@@ -67,3 +67,11 @@ docs:
       - title: "DB"
         url: /categories/#DB
         category: "DB"
+
+      - title: "OS"
+        url: /categories/#OS
+        category: "OS"
+
+      - title: "네트워크"
+        url: /categories/#네트워크
+        category: "네트워크"
