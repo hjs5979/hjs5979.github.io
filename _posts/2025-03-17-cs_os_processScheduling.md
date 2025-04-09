@@ -71,3 +71,19 @@ sidebar:
 대기 중인 프로세스 중 현재 Response Ratio가 가장 높은 것이 프로세스 종료 시 까지 선점
 
 Response Ratio = (대기시간 + 서비스시간) / 서비스시간
+
+<table style="border: 2px;">
+  <tr>
+    <td style="border: 1px solid black; text-align:center;" colspan = 4> 선택 정렬 </td>
+    <td style="border: 1px solid black; text-align:center;" colspan = 3> 삽입 정렬 </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black;"> SRT(Shorted Remaining Time) </td>
+    <td style="border: 1px solid black;"> Round Robin (RR) </td>
+    <td style="border: 1px solid black;"> 다단계 큐 </td>
+    <td style="border: 1px solid black;"> 다단계 피드백 큐 </td>
+    <td style="border: 1px solid black;"> FCFS (First Come, First Serve) </td>
+    <td style="border: 1px solid black;"> SJF (Shortest Job First) </td>
+    <td style="border: 1px solid black;"> HRN (Highest Response Ratio) </td>
+  </tr>
+</table>
