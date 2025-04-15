@@ -30,7 +30,7 @@ sidebar:
 
 #### (3) 추상 팩토리 패턴
 서로 관련이 있는 객체들을 통째로 묶어서 팩토리 클래스로 만들고, 이를 조건에 따라 생성하도록 다시 팩토리를 만들어서 객체를 생성하는 패턴
-#### (4) 빌더 패
+#### (4) 빌더 패턴
 복잡한 객체를 단계적으로 만들 수 있게 해주는 패턴 ex. .builder().name().age()
 
 #### (5) 프로토타입 패턴
@@ -43,10 +43,10 @@ sidebar:
 #### (2) 브리지 패턴
 추상화와 구현을 분리하여 두 가지를 독립적으로 확장할 수 있는 패턴
 
-#### (3)컴포지트 패턴
+#### (3) 컴포지트 패턴
 개별 객체와 복합 객체를 동일하게 다루어, 트리 구조의 객체를 구성
 
-#### (4)데코레이터 패턴
+#### (4) 데코레이터 패턴
 메소드 호출의 반환값에 변화를 주기 위해 중간에 장식자를 두는 패턴
 
 #### (5) 퍼사드 패턴
@@ -92,3 +92,55 @@ sidebar:
 
 #### (11) 이터레이터 패턴
 컬렉션의 내부 구조를 노출하지 않고, 그 안에 들어 있는 요소들을 하나씩 순차적으로 접근할 수 있게 해주는 디자인 패턴
+
+<table style="border: 2px;">
+  <tr>
+    <td style="border: 1px solid black; text-align:center;" colspan = 3> 생성 패턴 </td>
+    <td style="border: 1px solid black; text-align:center;" colspan = 3> 구조 패턴 </td>
+    <td style="border: 1px solid black; text-align:center;" colspan = 3> 행위 패턴 </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black;"> 싱글톤 패턴 </td>
+    <td style="border: 1px solid black;"> 팩토리 메소드 패턴 </td>
+    <td style="border: 1px solid black;"> 추상 팩토리 패턴 </td>
+    <td style="border: 1px solid black;"> 어댑터 패턴 </td>
+    <td style="border: 1px solid black;"> 브리지 패턴 </td>
+    <td style="border: 1px solid black;"> 컴포지트 패턴 </td>
+    <td style="border: 1px solid black;"> 옵저버 패턴 </td>
+    <td style="border: 1px solid black;"> 전략 패턴 </td>
+    <td style="border: 1px solid black;"> 커맨드 패턴 </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black;"> 빌더 패턴 </td>
+    <td style="border: 1px solid black;"> 프로토타입 패턴 </td>
+    <td style="border: 1px solid black;"> </td>
+    <td style="border: 1px solid black;"> 데코레이터 패턴 </td>
+    <td style="border: 1px solid black;"> 퍼사드 패턴 </td>
+    <td style="border: 1px solid black;"> 플라이웨이트 패턴 </td>
+    <td style="border: 1px solid black;"> 상태 패턴 </td>
+    <td style="border: 1px solid black;"> 책임 연쇄 패턴 </td>
+    <td style="border: 1px solid black;"> 방문자 패턴 </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;"> 프록시 패턴 </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;"> 인터프리터 패턴 </td>
+    <td style="border: 1px solid black;"> 메멘토 패턴 </td>
+    <td style="border: 1px solid black;"> 중재자 패턴 </td>
+  </tr>
+  <tr>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;">  </td>
+    <td style="border: 1px solid black;"> 템플릿 메소드 패턴 </td>
+    <td style="border: 1px solid black;"> 이터레이터 패턴 </td>
+    <td style="border: 1px solid black;">  </td>
+  </tr>
+</table>
