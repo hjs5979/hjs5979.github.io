@@ -178,3 +178,102 @@ else
 ```bash
 B의 주소값 이후의 문자열 : BC
 ```
+```c
+// 문자열 => int
+char str6[] = "123";
+int num = atoi(str6);
+printf("문자열 => int : %d\n", num);
+```
+```bash
+문자열 => int : 123
+```
+```c
+// 문자열 => long
+char str7[] = "123";
+long num2 = atol(str7);
+printf("문자열 => long : %ld\n", num2);
+```
+```bash
+문자열 => long : 123
+```
+```c
+// 문자열 => float
+char str8[] = "123.123";
+float num3 = atof(str8);
+printf("문자열 => float : %f\n", num3);
+```
+```bash
+문자열 => float : 123.123001
+```
+```c
+// 문자열 => double
+char str9[] = "123.123";
+char *end; // 숫자 외 문자열을 저장할 장소
+double num4 = strtod(str9, &end);
+printf("문자열 => double : %lf\n", num4);
+```
+```bash
+문자열 => double : 123.123000
+```
+
+
+# 숫자
+
+
+```c
+// int => 문자열
+int num = 123;
+char str[10];
+
+sprintf(str, "%d", num);
+printf("int => 문자열: %s\n", str);
+```
+```bash
+int => 문자열: 123
+```
+```c
+//int 절댓값
+float num5 = 1.5;
+int num6 = abs(num5);
+printf("int 절댓값 : %d\n", num6);
+```
+```bash
+int 절댓값 : 123
+```
+```c
+//double 절댓값
+float num7 = 1.5;
+double num8 = abs(num7);
+printf("double 절댓값 : %lf\n", num8);
+```
+```bash
+double 절댓값 : 1.000000
+```
+```c
+//제곱
+int x = 2;
+int y = 3;
+int num9 = pow(2,3);
+printf("제곱 : %d\n", num8);
+```
+```bash
+제곱 : 8
+```
+```c
+// 올림
+float num10 = 1.86;
+int num11 = ceil(num9);
+printf("올림 : %d\n", num11);
+```
+```bash
+올림 : 2
+```
+```c
+// 내림
+float num12 = 1.86;
+int num13 = floor(num12);
+printf("내림 : %d\n", num13);
+```
+```bash
+내림 : 1
+```

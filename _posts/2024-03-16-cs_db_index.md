@@ -55,7 +55,7 @@ B+tree는 현재 DB에서 가장 많이 사용되는 데이터 구조이다.
 
 B+tree는 다음과 같이 생성된다.
 
-![png](/assets/images/db/bptree.PNG)
+![png](/assets/images/db/bptree.png)
 
 다음과 같은 쿼리를 날린다고 가정하자.
 
