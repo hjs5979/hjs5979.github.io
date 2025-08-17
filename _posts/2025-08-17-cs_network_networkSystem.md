@@ -12,4 +12,4 @@ sidebar:
 
 # 네트워크 작동방식
 
-![png](/assets/images/os/networkSystem.png)
+![png](/assets/images/network/networkSystem.png)
