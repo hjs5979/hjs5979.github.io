@@ -10,7 +10,7 @@ sidebar:
   nav: docs
 ---
 
-![png](/assets/images/os/routingProtocol.PNG)
+![png](/assets/images/os/routingProtocol.png)
 
 # 라우팅 프로토콜
 
