@@ -250,10 +250,29 @@ sidebar:
       </td>
     </tr>
     <tr>
+      <th style="border: 1px solid black; text-align:center" > 세션 계층 </th>
+      <td style="border: 1px solid black;" > 
+        <ul>
+        </ul>
+      </td>
+      <td style="border: 1px solid black;" >
+      </td>
+      <td style="border: 1px solid black;" > 
+        <ul>
+          <li>RPC : 원격 시스템에서 함수/프로시저를 실행할 수 있도록 함.</li>
+          <li>NetBIOS : 네트워크 기반 입출력을 위한 세션 서비스</li>
+          <li>PPTP : VPN 연결에서 세션을 설정하고 관리</li>
+        </ul>
+      </td>
+      <td style="border: 1px solid black;" >
+            TCP/IP 세션을 만들고 없앰
+      </td>
+    </tr>
+    <tr>
       <th style="border: 1px solid black; text-align:center" > 표현 계층 </th>
       <td style="border: 1px solid black;" > </td>
       <td style="border: 1px solid black;" > </td>
-      <td style="border: 1px solid black;" >
+      <td style="border: 1px solid black; text-align:center" >
         <ul>
           <li>SSL, TLD</li>
           <li>MIME</li>
