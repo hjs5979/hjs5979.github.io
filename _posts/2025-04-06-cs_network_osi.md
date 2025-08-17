@@ -269,10 +269,10 @@ sidebar:
       </td>
     </tr>
     <tr>
-      <th style="border: 1px solid black; text-align:center" > 표현 계층 </th>
+      <th style="border: 1px solid black; text-align:left" > 표현 계층 </th>
       <td style="border: 1px solid black;" > </td>
       <td style="border: 1px solid black;" > </td>
-      <td style="border: 1px solid black; text-align:center" >
+      <td style="border: 1px solid black;" >
         <ul>
           <li>SSL, TLD</li>
           <li>MIME</li>
