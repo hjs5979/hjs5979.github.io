@@ -75,3 +75,7 @@ docs:
       - title: "네트워크"
         url: /categories/#네트워크
         category: "네트워크"
+
+      - title: "보안"
+        url: /categories/#보안
+        category: "보안"
