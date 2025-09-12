@@ -1,8 +1,8 @@
 ---
 layout: single
 title: 프로세스 스케줄링
-categories: OS
-tag: [OS]
+categories: 운영체제
+tag: [운영체제]
 use_math: true
 toc: true
 author_profile: true

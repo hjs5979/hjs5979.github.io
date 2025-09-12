@@ -64,13 +64,13 @@ docs:
         url: /categories/#알고리즘
         category: "알고리즘"
 
-      - title: "DB"
-        url: /categories/#DB
-        category: "DB"
+      - title: "데이터베이스"
+        url: /categories/#데이터베이스
+        category: "데이터베이스"
 
-      - title: "OS"
-        url: /categories/#OS
-        category: "OS"
+      - title: "운영체제"
+        url: /categories/#운영체제
+        category: "운영체제"
 
       - title: "네트워크"
         url: /categories/#네트워크
@@ -79,3 +79,7 @@ docs:
       - title: "보안"
         url: /categories/#보안
         category: "보안"
+      
+      - title: "프로그래밍"
+        url: /categories/#프로그래밍
+        category: "프로그래밍"

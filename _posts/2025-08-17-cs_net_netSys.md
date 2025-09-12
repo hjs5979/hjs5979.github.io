@@ -1,8 +1,8 @@
 ---
 layout: single
 title: 네트워크 작동방식
-categories: OS
-tag: [OS]
+categories: 네트워크
+tag: [네트워크]
 use_math: true
 toc: true
 author_profile: true
